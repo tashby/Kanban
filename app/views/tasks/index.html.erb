@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_task_path, class: "btn-floating btn-large blue" %>
+  </div>
+  <div class="row">
     <div class="col l4 s12">
     <h3>Open</h3>
       <%= render @open %>
@@ -13,7 +16,5 @@
       <%= render @closed %>
     </div>
   </div>
-  <div class="row">
-    <%= link_to 'New Task', new_task_path %>
-  </div>
+
 </div>
