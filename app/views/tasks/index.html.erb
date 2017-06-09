@@ -1,27 +1,51 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
+  <div class="row">
 <h1>Tasks</h1>
+<div class="col l4 s12">
+        <h2>Open</h2>
+          <% @open.each do |task| %>
+         <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+         <%= task.content %>
+          <%= link_to 'Edit', edit_task_path(task) %>
+          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Mark as WIP', change_task_path(task, state: 'wip'), method: :put %>
+         </div>
+         </div>
+          <% end %>
+    </div>
+    <div class="col l4 s12">
+            <h2>WIP</h2>
+              <% @wip.each do |task| %>
+             <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+             <%= task.content %>
+              <%= link_to 'Edit', edit_task_path(task) %>
+              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Mark as Open', change_task_path(task, state: 'open'), method: :put %>
+              <%= link_to 'Mark as closed', change_task_path(task, state: 'closed'), method: :put %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.content %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+             </div>
+             </div>
+              <% end %>
+        </div>
+        <div class="col l4 s12">
+                <h2>Closed</h2>
+                  <% @closed.each do |task| %>
+                 <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                 <%= task.content %>
+                  <%= link_to 'Edit', edit_task_path(task) %>
+                  <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to 'Mark as WIP', change_task_path(task, state: 'wip'), method: :put %>
+                 </div>
+                 </div>
+                  <% end %>
+            </div>
+  <br>
+  </div>
+  <div class="row">
+    <%= link_to 'New Task', new_task_path %>
+  </div>
+</div>
