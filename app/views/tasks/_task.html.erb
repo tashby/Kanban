@@ -1,0 +1,20 @@
+<div class="card blue-grey darken-1">
+     <div class="card-panel white">
+         <%= link_to edit_task_path(task) do %>
+        Created <%= time_ago_in_words(task.created_at) %> ago
+        <% end %>
+        <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, class: "right" %>
+    </div>
+    <div class="card-content white-text">
+    <%= task.content %>
+    </div>
+    <div class="card-action">
+      <% if task.state == 'wip' %> <%= link_to "<i class ='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "open"), method: :put, class:"btn red", style: "width:45%;" %><%= link_to "<i class ='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "closed"), method: :put, class:"btn right", style: "width:45%;"  %>
+
+<% elsif task.state == 'closed' %>
+      <%= link_to "<i class ='fa fa-arrow-left'></i>".html_safe, change_task_path(task, state: "wip"), method: :put, class:"btn btn-block red" %>
+    <% else %>
+      <%= link_to "<i class ='fa fa-arrow-right'></i>".html_safe, change_task_path(task, state: "wip"), method: :put, class:"btn btn-block"  %>
+    <% end %>
+    </div>
+ </div>

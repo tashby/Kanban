@@ -1,49 +1,17 @@
-<p id="notice"><%= notice %></p>
 <div class="container">
   <div class="row">
-<h1>Tasks</h1>
-<div class="col l4 s12">
-        <h2>Open</h2>
-          <% @open.each do |task| %>
-         <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-         <%= task.content %>
-          <%= link_to 'Edit', edit_task_path(task) %>
-          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= link_to 'Mark as WIP', change_task_path(task, state: 'wip'), method: :put %>
-         </div>
-         </div>
-          <% end %>
+    <div class="col l4 s12">
+    <h3>Open</h3>
+      <%= render @open %>
     </div>
     <div class="col l4 s12">
-            <h2>WIP</h2>
-              <% @wip.each do |task| %>
-             <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-             <%= task.content %>
-              <%= link_to 'Edit', edit_task_path(task) %>
-              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <%= link_to 'Mark as Open', change_task_path(task, state: 'open'), method: :put %>
-              <%= link_to 'Mark as closed', change_task_path(task, state: 'closed'), method: :put %>
-
-             </div>
-             </div>
-              <% end %>
-        </div>
-        <div class="col l4 s12">
-                <h2>Closed</h2>
-                  <% @closed.each do |task| %>
-                 <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                 <%= task.content %>
-                  <%= link_to 'Edit', edit_task_path(task) %>
-                  <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <%= link_to 'Mark as WIP', change_task_path(task, state: 'wip'), method: :put %>
-                 </div>
-                 </div>
-                  <% end %>
-            </div>
-  <br>
+    <h3>WIP</h3>
+      <%= render @wip %>
+    </div>
+    <div class="col l4 s12">
+    <h3>Closed</h3>
+      <%= render @closed %>
+    </div>
   </div>
   <div class="row">
     <%= link_to 'New Task', new_task_path %>
